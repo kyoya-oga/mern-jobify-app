@@ -2,7 +2,7 @@
 
 ![jobify](https://user-images.githubusercontent.com/64949271/179173826-334b95de-7978-413c-96cf-25ed710438f1.jpg)
 
-[Demo URL](https://jobify-app-new.herokuapp.com/)
+[Demo URL](https://mern-jobify-app.onrender.com/)
 
 ### Built With
 
