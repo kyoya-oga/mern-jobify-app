@@ -1,36 +1,37 @@
-import React, { useReducer, useContext } from 'react';
+import axios from 'axios';
+import React, { useContext, useReducer } from 'react';
 import {
+  CHANGE_PAGE,
   CLEAR_ALERT,
-  DISPLAY_ALERT,
-  SETUP_USER_BEGIN,
-  SETUP_USER_ERROR,
-  SETUP_USER_SUCCESS,
-  TOGGLE_SIDEBAR,
-  LOGOUT_USER,
-  UPDATE_USER_BEGIN,
-  UPDATE_USER_ERROR,
-  UPDATE_USER_SUCCESS,
-  HANDLE_CHANGE,
+  CLEAR_FILTERS,
   CLEAR_VALUES,
   CREATE_JOB_BEGIN,
   CREATE_JOB_ERROR,
   CREATE_JOB_SUCCESS,
-  GET_JOBS_BEGIN,
-  GET_JOBS_SUCCESS,
-  SET_EDIT_JOBS,
   DELETE_JOB_BEGIN,
+  DELETE_JOB_ERROR,
+  DISPLAY_ALERT,
   EDIT_JOB_BEGIN,
   EDIT_JOB_ERROR,
   EDIT_JOB_SUCCESS,
-  SHOW_STATS_BEGIN,
-  SHOW_STATS_SUCCESS,
-  CLEAR_FILTERS,
-  CHANGE_PAGE,
+  GET_JOBS_BEGIN,
+  GET_JOBS_SUCCESS,
+  HANDLE_CHANGE,
+  LOGOUT_USER,
   REGISTER_USER_BEGIN,
   REGISTER_USER_ERROR,
   REGISTER_USER_SUCCESS,
+  SETUP_USER_BEGIN,
+  SETUP_USER_ERROR,
+  SETUP_USER_SUCCESS,
+  SET_EDIT_JOBS,
+  SHOW_STATS_BEGIN,
+  SHOW_STATS_SUCCESS,
+  TOGGLE_SIDEBAR,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_ERROR,
+  UPDATE_USER_SUCCESS,
 } from './actions';
-import axios from 'axios';
 
 import reducer from './reducer';
 
@@ -291,8 +292,13 @@ const AppProvider = ({ children }) => {
       await authFetch.delete(`/jobs/${jobId}`);
       getJobs();
     } catch (error) {
-      logoutUser();
+      if (error.response.status === 401) return;
+      dispatch({
+        type: DELETE_JOB_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
     }
+    clearAlert();
   };
 
   const showStats = async () => {

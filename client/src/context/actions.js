@@ -30,6 +30,7 @@ export const GET_JOBS_SUCCESS = 'GET_JOBS_SUCCESS';
 export const SET_EDIT_JOBS = 'SET_EDIT_JOBS';
 
 export const DELETE_JOB_BEGIN = 'DELETE_JOB_BEGIN';
+export const DELETE_JOB_ERROR = 'DELETE_JOB_ERROR';
 
 export const EDIT_JOB_BEGIN = 'EDIT_JOB_BEGIN';
 export const EDIT_JOB_SUCCESS = 'EDIT_JOB_SUCCESS';

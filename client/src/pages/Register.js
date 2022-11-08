@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormRow, Logo, Alert } from '../components';
 import Wrapper from '../assets/wrappers/RegisterPage';
+import { Alert, FormRow, Logo } from '../components';
 import { useAppContext } from '../context/appContext';
 
 const initialState = {
@@ -101,6 +101,24 @@ const Register = () => {
 
         <button type="submit" className="btn btn-block" disabled={isLoading}>
           submit
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-block btn-hipster"
+          disabled={isLoading}
+          onClick={() => {
+            setupUser({
+              currentUser: {
+                email: 'test@test.com',
+                password: 'password',
+              },
+              endPoint: 'login',
+              alertText: 'Login successful! Redirecting...',
+            });
+          }}
+        >
+          {isLoading ? 'loading...' : 'login as guest'}
         </button>
         <p>
           {values.isMember ? 'Not a member yet?' : 'Already a member?'}

@@ -1,13 +1,13 @@
-import Job from '../models/Job.js';
 import { StatusCodes } from 'http-status-codes';
+import moment from 'moment';
+import mongoose from 'mongoose';
 import {
   BadRequestError,
-  UnAuthenticatedError,
   NotFoundError,
+  UnAuthenticatedError,
 } from '../errors/index.js';
+import Job from '../models/Job.js';
 import checkPermissions from '../utils/checkPermissions.js';
-import mongoose from 'mongoose';
-import moment from 'moment';
 
 const createJob = async (req, res) => {
   const { position, company } = req.body;
